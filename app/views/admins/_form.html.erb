@@ -1,0 +1,18 @@
+<%= form_with(model: admin) do |form| %>
+  <% if admin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(admin.errors.count, "error") %> prohibited this admin from being saved:</h2>
+
+      <ul>
+        <% admin.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render "#{@admin.current_step}_step", :form => form %>
+
+  <p><%= form.submit "Continue" %></p>
+  <p><%= form.submit "Back", :name => "previous_button" unless @admin.first_step? %></p>
+<% end %>
